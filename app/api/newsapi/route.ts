@@ -12,6 +12,7 @@ export async function GET() {
 
     console.log("API Key retrieved");
 
+    // The recommended node SDK is a bit outdated so I'm just going to fetch the articles
     const url = `https://newsapi.org/v2/top-headlines?country=us&apiKey=${API_KEY}`;
 
     console.log(url);
@@ -28,11 +29,6 @@ export async function GET() {
         }
 
         const data = await res.json();
-
-        console.log("Articles retrieved: ", data.articles.length);
-        data.articles.forEach((article: any) => {
-            console.info(`Article title: ${article.title}`);
-        });
 
         return NextResponse.json({ articles: data.articles });
     } catch (error: any) {
